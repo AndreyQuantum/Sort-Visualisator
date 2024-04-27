@@ -11,7 +11,7 @@ public class BubbleSort extends BaseSort {
 
 
     @Override
-    protected void getNext() {
+    protected void doOneIteration() {
         optimized();
     }
 

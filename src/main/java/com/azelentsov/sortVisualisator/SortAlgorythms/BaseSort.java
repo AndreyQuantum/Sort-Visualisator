@@ -1,7 +1,5 @@
 package com.azelentsov.sortVisualisator.SortAlgorythms;
 
-import lombok.extern.java.Log;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -17,7 +15,7 @@ public abstract class BaseSort{
 
     private Map<String, String> properties;
 
-    protected abstract void getNext();
+    protected abstract void doOneIteration();
 
     public BaseSort(int lengthOfArray) {
         populateArray(lengthOfArray);
