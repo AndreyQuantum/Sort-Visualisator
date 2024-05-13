@@ -19,30 +19,11 @@ public abstract class BaseSort{
 
     protected abstract void run();
 
-    public BaseSort(int lengthOfArray, int maxNumber) {
-        populateArray(lengthOfArray, maxNumber);
+    public BaseSort(List<ArrayElement> arrayToSort) {
+        this.arrayToSort = arrayToSort;
         properties = propsUtils.readProperties(name);
     }
 
-    public BaseSort(int lengthOfArray) {
-        populateArray(lengthOfArray);
-        properties = propsUtils.readProperties(name);
-    }
-    protected void populateArray(int length){
-        arrayToSort = new ArrayList<>();
-        Random random = new Random(12345);
-        for (int i = 0; i<= length-1; i++){
-            arrayToSort.add(new ArrayElement(i, random.nextInt()));
-        }
-    }
-
-    protected void populateArray(int length, int maxNumber){
-        arrayToSort = new ArrayList<>();
-        Random random = new Random(12345);
-        for (int i = 0; i<= length-1; i++){
-            arrayToSort.add(new ArrayElement(i, random.nextInt(0,maxNumber)));
-        }
-    }
 
     protected void saveArrayBeforeIteration(){
         Collections.copy(arrayBefore, arrayToSort);

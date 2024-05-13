@@ -1,11 +1,13 @@
 package com.azelentsov.sortVisualisator.SortAlgorythms;
 
 
+import java.util.List;
+
 public class BubbleSort extends BaseSort {
 
 
-    public BubbleSort(int lengthOfArray) {
-        super(lengthOfArray);
+    public BubbleSort(List<ArrayElement> arrayToSort) {
+        super(arrayToSort);
 
     }
 
@@ -46,11 +48,10 @@ public class BubbleSort extends BaseSort {
 
 
     public static void main(String[] args) {
-        var sort = new BubbleSort(10);
 //        System.out.println(sort.getProperties());
         System.out.println("Element count \t elapsed time");
         for (int N = 10; N<=1_000_000; N*=10){
-            var bubbleTest = new BubbleSort(N);
+            var bubbleTest = new BubbleSort(ArrayGenerator.getRandomArray(N, N));
             bubbleTest.run();
             System.out.println(bubbleTest.getResult());
         }
