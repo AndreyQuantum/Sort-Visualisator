@@ -1,11 +1,13 @@
-package com.azelentsov.sortVisualisator.SortAlgorythms;
+package com.azelentsov.sortVisualisator.Core;
 
-import com.azelentsov.sortVisualisator.SortAlgorythms.records.ArrayElement;
-import com.azelentsov.sortVisualisator.SortAlgorythms.records.IterationResult;
-import com.azelentsov.sortVisualisator.SortAlgorythms.records.SortingResult;
+import com.azelentsov.sortVisualisator.Core.records.ArrayElement;
+import com.azelentsov.sortVisualisator.Core.records.IterationResult;
+import com.azelentsov.sortVisualisator.Core.records.SortingResult;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
+@Component
 public abstract class BaseSort{
 
     private final String name = this.getClass().getSimpleName();
@@ -17,13 +19,13 @@ public abstract class BaseSort{
     protected List<ArrayElement> arrayToSort;
 
     private PropsUtils propsUtils = new PropsUtils();
-    private Map<String, String> properties;
+    private Map<String, String> props;
 
     protected abstract void run();
 
     public BaseSort(List<ArrayElement> arrayToSort) {
         this.arrayToSort = arrayToSort;
-        properties = propsUtils.readProperties(name);
+        props = propsUtils.readProperties(name);
     }
 
 
@@ -40,8 +42,8 @@ public abstract class BaseSort{
         Collections.swap(arrayToSort, indexA, indexB);
     }
 
-    protected Map<String,String> getProperties(){
-        return properties;
+    public Map<String,String> getProps(){
+        return props;
     }
 
     public SortingResult getResult() {
@@ -49,12 +51,12 @@ public abstract class BaseSort{
         run();
         long finish = System.currentTimeMillis();
         long elapsed = finish - start;
-        properties.put("elapsed time", String.valueOf(elapsed));
-        return new SortingResult(results, properties.get("elapsed time"));
+        props.put("elapsed time", String.valueOf(elapsed));
+        return new SortingResult(results, props.get("elapsed time"));
     }
 
-    protected String getName(){
-        return properties.get("name");
+    public String getName(){
+        return props.get("name");
     }
 
 }

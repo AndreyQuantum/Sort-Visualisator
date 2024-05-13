@@ -1,4 +1,4 @@
-package com.azelentsov.sortVisualisator.SortAlgorythms;
+package com.azelentsov.sortVisualisator.Core;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -16,7 +16,7 @@ public class PropsUtils {
 
     private static String getPathToProperties(String name) {
         var path = Paths.get(System.getProperty("user.dir"),  "src", "main", "java", "com", "azelentsov",
-                "sortVisualisator", "SortAlgorythms","properties", name + ".properties");
+                "sortVisualisator","Core","properties", name + ".properties");
         return path.toString();
     }
 

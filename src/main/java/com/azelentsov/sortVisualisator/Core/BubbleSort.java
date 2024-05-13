@@ -1,10 +1,12 @@
-package com.azelentsov.sortVisualisator.SortAlgorythms;
+package com.azelentsov.sortVisualisator.Core;
 
 
-import com.azelentsov.sortVisualisator.SortAlgorythms.records.ArrayElement;
+import com.azelentsov.sortVisualisator.Core.records.ArrayElement;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class BubbleSort extends BaseSort {
 
 
