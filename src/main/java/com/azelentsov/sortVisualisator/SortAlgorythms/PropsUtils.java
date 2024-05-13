@@ -1,4 +1,4 @@
-package com.azelentsov.sortVisualisator.SortAlgorythms.properties;
+package com.azelentsov.sortVisualisator.SortAlgorythms;
 
 import java.io.FileInputStream;
 import java.io.IOException;

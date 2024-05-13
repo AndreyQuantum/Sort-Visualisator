@@ -1,5 +1,7 @@
 package com.azelentsov.sortVisualisator.SortAlgorythms;
 
+import com.azelentsov.sortVisualisator.SortAlgorythms.records.ArrayElement;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

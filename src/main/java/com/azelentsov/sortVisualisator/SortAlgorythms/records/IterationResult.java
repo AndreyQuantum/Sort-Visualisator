@@ -1,4 +1,4 @@
-package com.azelentsov.sortVisualisator.SortAlgorythms;
+package com.azelentsov.sortVisualisator.SortAlgorythms.records;
 
 import java.util.List;
 

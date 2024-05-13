@@ -1,6 +1,8 @@
 package com.azelentsov.sortVisualisator.SortAlgorythms;
 
-import com.azelentsov.sortVisualisator.SortAlgorythms.properties.PropsUtils;
+import com.azelentsov.sortVisualisator.SortAlgorythms.records.ArrayElement;
+import com.azelentsov.sortVisualisator.SortAlgorythms.records.IterationResult;
+import com.azelentsov.sortVisualisator.SortAlgorythms.records.SortingResult;
 
 import java.util.*;
 

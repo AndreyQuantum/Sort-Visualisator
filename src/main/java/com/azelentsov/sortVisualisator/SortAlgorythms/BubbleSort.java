@@ -1,6 +1,8 @@
 package com.azelentsov.sortVisualisator.SortAlgorythms;
 
 
+import com.azelentsov.sortVisualisator.SortAlgorythms.records.ArrayElement;
+
 import java.util.List;
 
 public class BubbleSort extends BaseSort {
