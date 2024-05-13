@@ -9,10 +9,14 @@ public abstract class BaseSort{
 
     protected List<ArrayElement> arrayToSort;
 
+    private List<ArrayElement> arrayBefore = new LinkedList<>();
+
+
+    private List<IterationResult> results = new LinkedList<>();
 
     private Map<String, String> properties;
 
-    protected abstract void doOneIteration();
+    public abstract void run();
 
     public BaseSort(int lengthOfArray, int maxNumber) {
         populateArray(lengthOfArray, maxNumber);
@@ -69,8 +73,21 @@ public abstract class BaseSort{
         return res;
     }
 
+    protected void saveArrayBeforeIteration(){
+        Collections.copy(arrayBefore, arrayToSort);
+    }
+    protected void saveArrayAfterIteration(int[] indexesToFocusOn){
+        List<ArrayElement> arrayAfter = new LinkedList<>();
+        Collections.copy(arrayAfter, arrayToSort);
+        results.add(new IterationResult(indexesToFocusOn, arrayBefore, arrayAfter));
+    }
+
     protected Map<String,String> getProperties(){
         return properties;
+    }
+
+    public List<IterationResult> getResults() {
+        return results;
     }
 
     protected String getName(){
