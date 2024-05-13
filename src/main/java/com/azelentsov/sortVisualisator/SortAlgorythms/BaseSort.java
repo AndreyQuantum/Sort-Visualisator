@@ -1,31 +1,32 @@
 package com.azelentsov.sortVisualisator.SortAlgorythms;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.nio.file.Paths;
+import com.azelentsov.sortVisualisator.SortAlgorythms.properties.PropsUtils;
+
 import java.util.*;
 
 public abstract class BaseSort{
 
-    protected List<ArrayElement> arrayToSort;
+    private final String name = this.getClass().getSimpleName();
 
     private List<ArrayElement> arrayBefore = new LinkedList<>();
 
-
     private List<IterationResult> results = new LinkedList<>();
 
+    protected List<ArrayElement> arrayToSort;
+
+    private PropsUtils propsUtils = new PropsUtils();
     private Map<String, String> properties;
 
     protected abstract void run();
 
     public BaseSort(int lengthOfArray, int maxNumber) {
         populateArray(lengthOfArray, maxNumber);
-        readProperties();
+        properties = propsUtils.readProperties(name);
     }
 
     public BaseSort(int lengthOfArray) {
         populateArray(lengthOfArray);
-        readProperties();
+        properties = propsUtils.readProperties(name);
     }
     protected void populateArray(int length){
         arrayToSort = new ArrayList<>();
@@ -43,36 +44,6 @@ public abstract class BaseSort{
         }
     }
 
-    private void readProperties() {
-        String name = this.getClass().getSimpleName();
-        String pathToFile = getPathToProperties(name);
-        Properties props = readPropsFile(pathToFile, name);
-        properties = propertiesToMap(props);
-    }
-
-    private static String getPathToProperties(String name) {
-        var path = Paths.get(System.getProperty("user.dir"),  "src", "main", "java", "com", "azelentsov",
-                "sortVisualisator", "SortAlgorythms","properties", name + ".properties");
-        return path.toString();
-    }
-
-    private Map<String, String> propertiesToMap(Properties props) {
-        Map<String, String> propertiesMap =  new HashMap<>();
-        props.forEach((key, value) -> propertiesMap.put((String) key, (String) value));
-        return propertiesMap;
-    }
-
-    private Properties readPropsFile(String filePath, String name){
-        var res = new Properties();
-        res.setProperty("name", name);
-        try (FileInputStream in = new FileInputStream(filePath)) {
-            res.load(in);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return res;
-    }
-
     protected void saveArrayBeforeIteration(){
         Collections.copy(arrayBefore, arrayToSort);
     }
@@ -80,6 +51,10 @@ public abstract class BaseSort{
         List<ArrayElement> arrayAfter = new LinkedList<>();
         Collections.copy(arrayAfter, arrayToSort);
         results.add(new IterationResult(indexesToFocusOn, arrayBefore, arrayAfter));
+    }
+
+    protected void swap(int indexA, int indexB){
+        Collections.swap(arrayToSort, indexA, indexB);
     }
 
     protected Map<String,String> getProperties(){
@@ -99,8 +74,4 @@ public abstract class BaseSort{
         return properties.get("name");
     }
 
-
-    protected void swap(int indexA, int indexB){
-        Collections.swap(arrayToSort, indexA, indexB);
-    }
 }
