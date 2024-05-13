@@ -16,19 +16,19 @@ public class BubbleSort extends BaseSort {
     }
 
     private void standart(){
-        for (int endPointer = arrayToSort.length; endPointer>1; endPointer--){
+        for (int endPointer = arrayToSort.size(); endPointer>1; endPointer--){
             for (int currentIndex=1; currentIndex< endPointer; currentIndex++){
-                if (arrayToSort[currentIndex-1] > arrayToSort[currentIndex]){
+                if (arrayToSort.get(currentIndex-1).value() > arrayToSort.get(currentIndex).value()){
                     swap(currentIndex-1, currentIndex);
                 }
             }
         }
     }
     private void optimized(){
-        for (int endPointer = arrayToSort.length; endPointer>1; endPointer--){
+        for (int endPointer = arrayToSort.size(); endPointer>1; endPointer--){
             boolean isNotSwapped = true;
             for (int currentIndex=1; currentIndex< endPointer; currentIndex++){
-                if (arrayToSort[currentIndex-1] > arrayToSort[currentIndex]){
+                if (arrayToSort.get(currentIndex-1).value() > arrayToSort.get(currentIndex).value()){
                     swap(currentIndex-1, currentIndex);
                     isNotSwapped = false;
                 }

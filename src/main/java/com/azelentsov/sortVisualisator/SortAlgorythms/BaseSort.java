@@ -3,22 +3,43 @@ package com.azelentsov.sortVisualisator.SortAlgorythms;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Random;
+import java.util.*;
 
 public abstract class BaseSort{
 
-    protected int[] arrayToSort;
+    protected List<ArrayElement> arrayToSort;
 
 
     private Map<String, String> properties;
 
     protected abstract void doOneIteration();
 
+    public BaseSort(int lengthOfArray, int maxNumber) {
+        populateArray(lengthOfArray, maxNumber);
+        readProperties();
+    }
+
     public BaseSort(int lengthOfArray) {
         populateArray(lengthOfArray);
+        readProperties();
+    }
+    protected void populateArray(int length){
+        arrayToSort = new ArrayList<>();
+        Random random = new Random(12345);
+        for (int i = 0; i<= length-1; i++){
+            arrayToSort.add(new ArrayElement(i, random.nextInt()));
+        }
+    }
+
+    protected void populateArray(int length, int maxNumber){
+        arrayToSort = new ArrayList<>();
+        Random random = new Random(12345);
+        for (int i = 0; i<= length-1; i++){
+            arrayToSort.add(new ArrayElement(i, random.nextInt(0,maxNumber)));
+        }
+    }
+
+    private void readProperties() {
         String name = this.getClass().getSimpleName();
         String pathToFile = getPathToProperties(name);
         Properties props = readPropsFile(pathToFile, name);
@@ -56,24 +77,8 @@ public abstract class BaseSort{
         return properties.get("name");
     }
 
-    protected void populateArray(int length){
-        arrayToSort = new int[length];
-        Random random = new Random(12345);
-        for (int i = 0; i<= length-1; i++){
-            arrayToSort[i] = random.nextInt(0,100);
-        }
-    }
-    protected void populateArray(int length, int maxNumber){
-        arrayToSort = new int[length];
-        Random random = new Random(12345);
-        for (int i = 0; i<= length-1; i++){
-            arrayToSort[i] = random.nextInt(0,maxNumber);
-        }
-    }
 
     protected void swap(int indexA, int indexB){
-        int temp = arrayToSort[indexA];
-        arrayToSort[indexA] = arrayToSort[indexB];
-        arrayToSort[indexB] = temp;
+        Collections.swap(arrayToSort, indexA, indexB);
     }
 }
