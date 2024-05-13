@@ -52,7 +52,7 @@ public class BubbleSort extends BaseSort {
         for (int N = 10; N<=1_000_000; N*=10){
             var bubbleTest = new BubbleSort(N);
             bubbleTest.run();
-            System.out.println(bubbleTest.getResults());
+            System.out.println(bubbleTest.getResult());
         }
     }
 

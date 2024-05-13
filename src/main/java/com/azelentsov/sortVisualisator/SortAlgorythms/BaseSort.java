@@ -16,7 +16,7 @@ public abstract class BaseSort{
 
     private Map<String, String> properties;
 
-    public abstract void run();
+    protected abstract void run();
 
     public BaseSort(int lengthOfArray, int maxNumber) {
         populateArray(lengthOfArray, maxNumber);
@@ -86,8 +86,13 @@ public abstract class BaseSort{
         return properties;
     }
 
-    public List<IterationResult> getResults() {
-        return results;
+    public SortingResult getResult() {
+        long start = System.currentTimeMillis();
+        run();
+        long finish = System.currentTimeMillis();
+        long elapsed = finish - start;
+        properties.put("elapsed time", String.valueOf(elapsed));
+        return new SortingResult(results, properties.get("elapsed time"));
     }
 
     protected String getName(){
