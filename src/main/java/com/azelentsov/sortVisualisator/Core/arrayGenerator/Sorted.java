@@ -1,11 +1,14 @@
 package com.azelentsov.sortVisualisator.Core.arrayGenerator;
 
 import com.azelentsov.sortVisualisator.Core.records.ArrayElement;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sorted implements ArrayGenerator {
+
+@Component
+public class Sorted extends ArrayGenerator {
 
     @Override
     public List<ArrayElement> generateArray(int size, int maxValue) {
@@ -15,4 +18,5 @@ public class Sorted implements ArrayGenerator {
         }
         return array;
     }
+
 }

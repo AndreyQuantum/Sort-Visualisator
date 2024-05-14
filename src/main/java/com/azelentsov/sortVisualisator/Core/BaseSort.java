@@ -3,7 +3,6 @@ package com.azelentsov.sortVisualisator.Core;
 import com.azelentsov.sortVisualisator.Core.records.ArrayElement;
 import com.azelentsov.sortVisualisator.Core.records.IterationResult;
 import com.azelentsov.sortVisualisator.Core.records.SortingResult;
-import org.springframework.stereotype.Component;
 
 import java.util.*;
 
@@ -11,41 +10,37 @@ public abstract class BaseSort{
 
     private final String name = this.getClass().getSimpleName();
 
-    private List<ArrayElement> arrayBefore = new LinkedList<>();
+    private Map<String, String> props =  new PropsUtils().readProperties(name);
 
     private List<IterationResult> results = new LinkedList<>();
 
-    protected List<ArrayElement> arrayToSort;
+    protected List<ArrayElement> listToSort;
 
-    private PropsUtils propsUtils = new PropsUtils();
-    private Map<String, String> props;
+    private List<ArrayElement> listBefore;
+
 
     protected abstract void run();
 
-    public BaseSort(List<ArrayElement> arrayToSort) {
-        this.arrayToSort = arrayToSort;
-        props = propsUtils.readProperties(name);
-    }
-
-
     protected void saveArrayBeforeIteration(){
-        Collections.copy(arrayBefore, arrayToSort);
+        Collections.copy(listBefore, listToSort);
     }
     protected void saveArrayAfterIteration(int[] indexesToFocusOn){
-        List<ArrayElement> arrayAfter = new LinkedList<>();
-        Collections.copy(arrayAfter, arrayToSort);
-        results.add(new IterationResult(indexesToFocusOn, arrayBefore, arrayAfter));
+        List<ArrayElement> arrayAfter = new LinkedList<>(listToSort.stream().toList());
+        Collections.copy(arrayAfter, listToSort);
+        results.add(new IterationResult(indexesToFocusOn, listBefore, arrayAfter));
     }
 
     protected void swap(int indexA, int indexB){
-        Collections.swap(arrayToSort, indexA, indexB);
+        Collections.swap(listToSort, indexA, indexB);
     }
 
     public Map<String,String> getProps(){
         return props;
     }
 
-    public SortingResult getResult() {
+    public SortingResult getResult(List<ArrayElement> listToSort) {
+        this.listToSort = listToSort;
+        this.listBefore = listToSort;
         long start = System.currentTimeMillis();
         run();
         long finish = System.currentTimeMillis();

@@ -2,6 +2,8 @@ package com.azelentsov.sortVisualisator.Spring;
 
 
 import com.azelentsov.sortVisualisator.Core.BaseSort;
+import com.azelentsov.sortVisualisator.Core.arrayGenerator.ArrayGenerator;
+import com.azelentsov.sortVisualisator.Core.records.ArrayElement;
 import com.azelentsov.sortVisualisator.Core.records.SortingResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
@@ -18,6 +20,8 @@ import java.util.List;
 public class Controllers {
     private final List<BaseSort> algorythms;
 
+    private final List<ArrayGenerator> arrayGenerator;
+
     @GetMapping("/props/")
     public List<BaseSort> getAlgorythmsInfo(){
         return algorythms;
@@ -32,12 +36,18 @@ public class Controllers {
                 .orElseThrow();
     }
 
-    @GetMapping("/run/{name}/Sorted")
-    public SortingResult runAlgorythm(@PathVariable String name) {
+    @GetMapping("/run/{name}/{InitArrayType}")
+    public SortingResult runAlgorythm(@PathVariable String name,
+                                      @PathVariable String InitArrayType) {
+        List<ArrayElement> array =  arrayGenerator.stream().filter(gen -> gen.getName().equals(InitArrayType))
+                                    .findFirst()
+                                    .orElseThrow()
+                                    .generateArray(5, 5);
+        System.out.println(array);
         return algorythms.stream()
                 .filter(algorythm -> algorythm.getName().equals(name))
                 .findFirst()
                 .orElseThrow()
-                .getResult();
+                .getResult(array);
     }
 }

@@ -4,7 +4,11 @@ import com.azelentsov.sortVisualisator.Core.records.ArrayElement;
 
 import java.util.List;
 
-public interface ArrayGenerator {
+public abstract class ArrayGenerator {
 
-    public List<ArrayElement> generateArray(int size, int maxValue);
+    public abstract List<ArrayElement> generateArray(int size, int maxValue);
+
+    public String getName(){
+        return this.getClass().getSimpleName();
+    };
 }
