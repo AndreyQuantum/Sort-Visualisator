@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.*;
 
-@Component
 public abstract class BaseSort{
 
     private final String name = this.getClass().getSimpleName();

@@ -1,6 +1,7 @@
 package com.azelentsov.sortVisualisator.Core;
 
 
+import com.azelentsov.sortVisualisator.Core.arrayGenerator.Random;
 import com.azelentsov.sortVisualisator.Core.records.ArrayElement;
 import org.springframework.stereotype.Component;
 
@@ -55,7 +56,7 @@ public class BubbleSort extends BaseSort {
 //        System.out.println(sort.getProperties());
         System.out.println("Element count \t elapsed time");
         for (int N = 10; N<=1_000_000; N*=10){
-            var bubbleTest = new BubbleSort(ArrayGenerator.getRandomArray(N, N));
+            var bubbleTest = new BubbleSort(new Random().generateArray(5,10));
             bubbleTest.run();
             System.out.println(bubbleTest.getResult());
         }
