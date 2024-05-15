@@ -22,11 +22,19 @@ public abstract class BaseSort{
     protected abstract void run();
 
     protected void saveArrayBeforeIteration(){
-        Collections.copy(listBefore, listToSort);
+        listBefore = deepCopyArrayElements(listToSort);
     }
+
+    protected List<ArrayElement> deepCopyArrayElements(List<ArrayElement> list){
+        List<ArrayElement> copy = new LinkedList<>();
+        for (ArrayElement element : list){
+            copy.add(new ArrayElement(element.initIndex(), element.value()));
+        }
+        return copy;
+    }
+
     protected void saveArrayAfterIteration(int[] indexesToFocusOn){
-        List<ArrayElement> arrayAfter = new LinkedList<>(listToSort.stream().toList());
-        Collections.copy(arrayAfter, listToSort);
+        List<ArrayElement> arrayAfter = deepCopyArrayElements(listToSort);
         results.add(new IterationResult(indexesToFocusOn, listBefore, arrayAfter));
     }
 
