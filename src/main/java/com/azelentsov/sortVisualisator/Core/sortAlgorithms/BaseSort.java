@@ -1,5 +1,6 @@
 package com.azelentsov.sortVisualisator.Core.sortAlgorithms;
 
+import com.azelentsov.sortVisualisator.Core.sortAlgorithms.iterationResultMaker.IterationResultMaker;
 import com.azelentsov.sortVisualisator.Core.properties.PropsUtils;
 import com.azelentsov.sortVisualisator.Core.records.*;
 
@@ -34,37 +35,8 @@ public abstract class BaseSort{
 
     protected void saveArrayAfterIteration(int[] indexesToFocusOn){
         List<ArrayElement> listAfter = deepCopyArrayElements(listToSort);
-        IterationActionResult iterationActionResult = detectIterationAction(listBefore, listAfter);
-        results.add(
-                new IterationResult(
-                        indexesToFocusOn,
-                        arrayElementsToIntArray(listBefore),
-                        arrayElementsToIntArray(listAfter),
-                        iterationActionResult)
-        );
-    }
-
-    private int[] arrayElementsToIntArray(List<ArrayElement> list){
-        int[] array = new int[list.size()];
-        for (int i = 0; i < list.size(); i++){
-            array[i] = list.get(i).value();
-        }
-        return array;
-    }
-
-    private IterationActionResult detectIterationAction(List<ArrayElement> listBefore, List<ArrayElement> listAfter){
-        IterationAction action = IterationAction.NO_ACTION;
-        int[] involvedIndexes = new int[2];
-        int involvedIndexesCounter = 0;
-        for (int i = 0; i < listBefore.size(); i++){
-            if (listBefore.get(i).value() != listAfter.get(i).value()
-                && listBefore.get(i).initIndex() != listAfter.get(i).initIndex()){
-                action = IterationAction.SWAP;
-                involvedIndexes[involvedIndexesCounter++] = i;
-            }
-        }
-        return new IterationActionResult(action, involvedIndexes);
-
+        IterationResultMaker resultMaker = new IterationResultMaker(listBefore, listAfter);
+        results.add(resultMaker.getResult(indexesToFocusOn));
     }
 
     protected void swap(int indexA, int indexB){
@@ -82,8 +54,8 @@ public abstract class BaseSort{
         run();
         long finish = System.currentTimeMillis();
         long elapsed = finish - start;
-        props.put("elapsed time", String.valueOf(elapsed));
-        return new SortingResult(results, props.get("elapsed time"));
+        props.put("time elapsed", String.valueOf(elapsed));
+        return new SortingResult(results, props.get("time elapsed"));
     }
 
     public String getName(){

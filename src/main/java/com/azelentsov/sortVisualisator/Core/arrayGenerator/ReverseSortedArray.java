@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class ReverseSorted extends ArrayGenerator{
+public class ReverseSortedArray extends ArrayGenerator{
     @Override
     public List<ArrayElement> generateArray(int size, int maxValue) {
         ArrayElement[] result = new ArrayElement[size];
