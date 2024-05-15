@@ -1,4 +1,4 @@
-package com.azelentsov.sortVisualisator.Core;
+package com.azelentsov.sortVisualisator.Core.properties;
 
 import java.io.FileInputStream;
 import java.io.IOException;

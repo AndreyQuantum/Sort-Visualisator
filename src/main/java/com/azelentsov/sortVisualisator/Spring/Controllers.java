@@ -1,7 +1,7 @@
 package com.azelentsov.sortVisualisator.Spring;
 
 
-import com.azelentsov.sortVisualisator.Core.BaseSort;
+import com.azelentsov.sortVisualisator.Core.sortAlgorithms.BaseSort;
 import com.azelentsov.sortVisualisator.Core.arrayGenerator.ArrayGenerator;
 import com.azelentsov.sortVisualisator.Core.records.ArrayElement;
 import com.azelentsov.sortVisualisator.Core.records.SortingResult;
@@ -32,8 +32,13 @@ public class Controllers {
                 .orElseThrow();
     }
 
-    @GetMapping("/run/{sortingAlgorythmClassName}/")
-    public SortingResult runAlgorithm(@PathVariable String sortingAlgorythmClassName,
+    @GetMapping("/arrayGenerators/")
+    public List<ArrayGenerator> getAllArrayTypes(){
+        return arrayGenerator;
+    }
+
+    @GetMapping("/run/{sortingAlgorithmClassName}/")
+    public SortingResult runAlgorithm(@PathVariable String sortingAlgorithmClassName,
                                       @RequestParam String InitArrayType,
                                       @RequestParam int arraySize,
                                       @RequestParam int maxValue) {
@@ -44,7 +49,7 @@ public class Controllers {
                                     .generateArray(arraySize, maxValue);
         System.out.println(array);
         return algorythms.stream()
-                .filter(algorithm -> algorithm.getName().equals(sortingAlgorythmClassName))
+                .filter(algorithm -> algorithm.getName().equals(sortingAlgorithmClassName))
                 .findFirst()
                 .orElseThrow()
                 .getResult(array);

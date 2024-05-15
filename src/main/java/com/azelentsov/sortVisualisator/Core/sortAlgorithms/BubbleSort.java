@@ -1,4 +1,4 @@
-package com.azelentsov.sortVisualisator.Core;
+package com.azelentsov.sortVisualisator.Core.sortAlgorithms;
 
 
 import com.azelentsov.sortVisualisator.Core.records.ArrayElement;

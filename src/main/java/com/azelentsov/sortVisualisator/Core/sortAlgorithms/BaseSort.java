@@ -1,5 +1,6 @@
-package com.azelentsov.sortVisualisator.Core;
+package com.azelentsov.sortVisualisator.Core.sortAlgorithms;
 
+import com.azelentsov.sortVisualisator.Core.properties.PropsUtils;
 import com.azelentsov.sortVisualisator.Core.records.*;
 
 import java.util.*;
