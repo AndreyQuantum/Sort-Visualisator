@@ -9,6 +9,6 @@ public abstract class ArrayGenerator {
     public abstract List<ArrayElement> generateArray(int size, int maxValue);
 
     public String getName(){
-        return this.getClass().getSimpleName();
+        return this.getClass().getSimpleName().replace("Array", "");
     };
 }

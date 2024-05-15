@@ -1,7 +1,6 @@
 package com.azelentsov.sortVisualisator.Core;
 
 
-import com.azelentsov.sortVisualisator.Core.arrayGenerator.Random;
 import com.azelentsov.sortVisualisator.Core.records.ArrayElement;
 import org.springframework.stereotype.Component;
 
