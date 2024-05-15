@@ -4,5 +4,7 @@ import java.util.List;
 
 public record IterationResult(int[] indexesToFocusOn,
                               List<ArrayElement> arrayBeforeIteration,
-                              List<ArrayElement> arrayAfterIteration) {
+                              List<ArrayElement> arrayAfterIteration,
+                              IterationAction action,
+                              List<int[]> involvedIndexes) {
 }

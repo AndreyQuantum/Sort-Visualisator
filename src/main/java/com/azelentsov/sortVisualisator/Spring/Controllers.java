@@ -6,11 +6,7 @@ import com.azelentsov.sortVisualisator.Core.arrayGenerator.ArrayGenerator;
 import com.azelentsov.sortVisualisator.Core.records.ArrayElement;
 import com.azelentsov.sortVisualisator.Core.records.SortingResult;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,29 +19,32 @@ public class Controllers {
     private final List<ArrayGenerator> arrayGenerator;
 
     @GetMapping("/props/")
-    public List<BaseSort> getAlgorythmsInfo(){
+    public List<BaseSort> getAllAlgorithmInfo(){
         return algorythms;
     }
 
 //    TODO: add error handling if not found algorythm then return 404
-    @GetMapping("/props/{name}")
-    public BaseSort getAlgorythmInfo(@PathVariable String name) {
+    @GetMapping("/props/{sortingAlgorithmClassName}")
+    public BaseSort getAlgorithmInfo(@PathVariable String sortingAlgorithmClassName) {
         return algorythms.stream()
-                .filter(algorythm -> algorythm.getName().equals(name))
+                .filter(algorythm -> algorythm.getName().equals(sortingAlgorithmClassName))
                 .findFirst()
                 .orElseThrow();
     }
 
-    @GetMapping("/run/{name}/{InitArrayType}")
-    public SortingResult runAlgorythm(@PathVariable String name,
-                                      @PathVariable String InitArrayType) {
+    @GetMapping("/run/{sortingAlgorythmClassName}/")
+    public SortingResult runAlgorithm(@PathVariable String sortingAlgorythmClassName,
+                                      @RequestParam String InitArrayType,
+                                      @RequestParam int arraySize,
+                                      @RequestParam int maxValue) {
+
         List<ArrayElement> array =  arrayGenerator.stream().filter(gen -> gen.getName().equals(InitArrayType))
                                     .findFirst()
                                     .orElseThrow()
-                                    .generateArray(5, 5);
+                                    .generateArray(arraySize, maxValue);
         System.out.println(array);
         return algorythms.stream()
-                .filter(algorythm -> algorythm.getName().equals(name))
+                .filter(algorithm -> algorithm.getName().equals(sortingAlgorythmClassName))
                 .findFirst()
                 .orElseThrow()
                 .getResult(array);
