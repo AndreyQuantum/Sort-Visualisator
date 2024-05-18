@@ -21,7 +21,7 @@ public class BubbleSort extends BaseSort {
                 if (listToSort.get(currentIndex-1).value() > listToSort.get(currentIndex).value()){
                     swap(currentIndex-1, currentIndex);
                 }
-                saveArrayAfterIteration(new int[]{currentIndex, currentIndex - 1});
+                saveArrayAfterIteration(new int[]{currentIndex-1, currentIndex });
             }
         }
     }

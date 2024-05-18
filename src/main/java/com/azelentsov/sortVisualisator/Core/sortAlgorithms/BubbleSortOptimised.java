@@ -23,7 +23,7 @@ public class BubbleSortOptimised extends BaseSort {
                     swap(currentIndex-1, currentIndex);
                     isNotSwapped = false;
                 }
-                saveArrayAfterIteration(new int[]{currentIndex, currentIndex - 1});
+                saveArrayAfterIteration(new int[]{currentIndex-1, currentIndex });
             }
             if (isNotSwapped){
                 break;
