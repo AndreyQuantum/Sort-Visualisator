@@ -48,6 +48,7 @@ public abstract class BaseSort{
     }
 
     public SortingResult getResult(List<ArrayElement> listToSort) {
+        results = new LinkedList<>();
         this.listToSort = listToSort;
         this.listBefore = listToSort;
         long start = System.currentTimeMillis();

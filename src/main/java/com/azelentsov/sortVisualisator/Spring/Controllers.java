@@ -23,6 +23,11 @@ public class Controllers {
         return algorythms;
     }
 
+    @GetMapping("/props/name/")
+    public List<String> getAllAlgorithmName(){
+        return algorythms.stream().map(BaseSort::getName).toList();
+    }
+
 //    TODO: add error handling if not found algorythm then return 404
     @GetMapping("/props/{sortingAlgorithmClassName}")
     public BaseSort getAlgorithmInfo(@PathVariable String sortingAlgorithmClassName) {
@@ -32,22 +37,21 @@ public class Controllers {
                 .orElseThrow();
     }
 
-    @GetMapping("/arrayGenerators/")
-    public List<ArrayGenerator> getAllArrayTypes(){
-        return arrayGenerator;
+    @GetMapping("array/types/")
+    public List<String> getAllArrayTypes(){
+        return arrayGenerator.stream().map(ArrayGenerator::getName).toList();
     }
 
-    @GetMapping("/run/{sortingAlgorithmClassName}/")
+    @GetMapping("/run/{sortingAlgorithmClassName}")
     public SortingResult runAlgorithm(@PathVariable String sortingAlgorithmClassName,
-                                      @RequestParam String InitArrayType,
-                                      @RequestParam int arraySize,
+                                      @RequestParam String type,
+                                      @RequestParam int size,
                                       @RequestParam int maxValue) {
 
-        List<ArrayElement> array =  arrayGenerator.stream().filter(gen -> gen.getName().equals(InitArrayType))
+        List<ArrayElement> array =  arrayGenerator.stream().filter(gen -> gen.getName().equals(type))
                                     .findFirst()
                                     .orElseThrow()
-                                    .generateArray(arraySize, maxValue);
-        System.out.println(array);
+                                    .generateArray(size, maxValue);
         return algorythms.stream()
                 .filter(algorithm -> algorithm.getName().equals(sortingAlgorithmClassName))
                 .findFirst()
