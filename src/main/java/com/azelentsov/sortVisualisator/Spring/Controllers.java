@@ -20,14 +20,14 @@ public class Controllers {
 
     private final List<ArrayGenerator> arrayGenerator;
 
-    @GetMapping("/props/")
+    @GetMapping("/props")
     public Map<String, BaseSort> getAllAlgorithmInfo(){
         Map<String, BaseSort> result = new HashMap<>();
         algorythms.forEach(alg -> result.put(alg.getName(), alg));
         return result;
     }
 
-    @GetMapping("/props/name/")
+    @GetMapping("/props/name")
     public List<String> getAllAlgorithmName(){
         return algorythms.stream().map(BaseSort::getName).toList();
     }
@@ -41,7 +41,7 @@ public class Controllers {
                 .orElseThrow();
     }
 
-    @GetMapping("array/types/")
+    @GetMapping("array/types")
     public List<String> getAllArrayTypes(){
         return arrayGenerator.stream().map(ArrayGenerator::getName).toList();
     }
