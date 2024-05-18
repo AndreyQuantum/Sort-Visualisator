@@ -21,9 +21,9 @@ public class Controllers {
     private final List<ArrayGenerator> arrayGenerator;
 
     @GetMapping("/props")
-    public Map<String, BaseSort> getAllAlgorithmInfo(){
-        Map<String, BaseSort> result = new HashMap<>();
-        algorythms.forEach(alg -> result.put(alg.getName(), alg));
+    public Map<String, Map<String,String>> getAllAlgorithmInfo(){
+        Map<String, Map<String,String>> result = new HashMap<>();
+        algorythms.forEach(alg -> result.put(alg.getName(), alg.getProps()));
         return result;
     }
 
