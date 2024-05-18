@@ -19,7 +19,7 @@ public class ArrayRuntimeEntity {
     @JdbcTypeCode(SqlTypes.UUID)
     private UUID id;
 
-    private String arrayName;
+    private String sortAlgorithmName;
 
     private String arrayType;
 
