@@ -19,6 +19,8 @@ public class Controllers {
     private final List<BaseSort> algorithms;
 
     private final List<ArrayGenerator> arrayGenerator;
+    private final ArrayRuntimeRepository arrayRuntimeRepository;
+    private ArrayRuntimeRepository arrayRuntimeEntityRepository;
 
     @GetMapping("/props")
     public Map<String, Map<String,String>> getAllAlgorithmInfo(){
@@ -56,13 +58,29 @@ public class Controllers {
                                     .findFirst()
                                     .orElseThrow()
                                     .generateArray(size, maxValue);
-        return algorithms.stream()
+        BaseSort algorithmToUse = algorithms.stream()
                 .filter(algorithm -> algorithm.getName().equals(sortingAlgorithmClassName))
                 .findFirst()
-                .orElseThrow()
-                .getResult(array);
+                .orElseThrow();
+        SortingResult result = algorithmToUse.getResult(array);
+        ArrayRuntimeEntity runtimeEntity = ArrayRuntimeEntity.builder()
+                .arraySize(size)
+                .arrayType(type)
+                .sortAlgorithmName(algorithmToUse.getName())
+                .maxValue(maxValue)
+                .elapsedTimeMs(result.timeElapsed())
+                .build();
+        arrayRuntimeRepository.save(runtimeEntity);
+        return result;
     }
 //
-//    @GetMapping("/props/runtime")
-//    public
+    @GetMapping("/props/runtime")
+    public List<ArrayRuntimeEntity> getAllRuntimeStats(){
+        return arrayRuntimeRepository.findAll();
+    }
+
+    @GetMapping("/props/runtime/{sortingAlgorithmClassName}")
+    public List<ArrayRuntimeEntity> getAllRuntimeStats(@PathVariable String sortingAlgorithmClassName){
+        return arrayRuntimeRepository.findBySortAlgorithmName(sortingAlgorithmClassName);
+    }
 }

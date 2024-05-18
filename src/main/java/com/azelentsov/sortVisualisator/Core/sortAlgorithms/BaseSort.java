@@ -55,7 +55,7 @@ public abstract class BaseSort{
         run();
         long finish = System.currentTimeMillis();
         long elapsed = finish - start;
-        return new SortingResult(results, Long.toString(elapsed));
+        return new SortingResult(results, elapsed);
     }
 
     public String getName(){

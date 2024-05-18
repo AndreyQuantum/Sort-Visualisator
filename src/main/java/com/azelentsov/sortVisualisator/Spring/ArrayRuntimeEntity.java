@@ -25,6 +25,8 @@ public class ArrayRuntimeEntity {
 
     private int arraySize;
 
-    private int maxNumber;
+    private int maxValue;
+
+    private long elapsedTimeMs;
 
 }
