@@ -10,7 +10,7 @@ import java.util.Properties;
 public class PropsUtils {
     public Map<String, String> readProperties(String name) {
         String pathToFile = getPathToProperties(name);
-        Properties props = readPropsFile(pathToFile, name);
+        Properties props = readPropsFile(pathToFile);
         return propertiesToMap(props);
     }
 
@@ -26,13 +26,11 @@ public class PropsUtils {
         return propertiesMap;
     }
 
-    private Properties readPropsFile(String filePath, String name){
+    private Properties readPropsFile(String filePath){
         var res = new Properties();
-        res.setProperty("name", name);
         try (FileInputStream in = new FileInputStream(filePath)) {
             res.load(in);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ignored) {
         }
         return res;
     }

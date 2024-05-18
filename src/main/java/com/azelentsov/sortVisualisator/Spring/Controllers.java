@@ -8,7 +8,9 @@ import com.azelentsov.sortVisualisator.Core.records.SortingResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,8 +21,10 @@ public class Controllers {
     private final List<ArrayGenerator> arrayGenerator;
 
     @GetMapping("/props/")
-    public List<BaseSort> getAllAlgorithmInfo(){
-        return algorythms;
+    public Map<String, BaseSort> getAllAlgorithmInfo(){
+        Map<String, BaseSort> result = new HashMap<>();
+        algorythms.forEach(alg -> result.put(alg.getName(), alg));
+        return result;
     }
 
     @GetMapping("/props/name/")
