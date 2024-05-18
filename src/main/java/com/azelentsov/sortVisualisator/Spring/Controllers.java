@@ -16,26 +16,26 @@ import java.util.Map;
 @RequiredArgsConstructor
 @RequestMapping("/api")
 public class Controllers {
-    private final List<BaseSort> algorythms;
+    private final List<BaseSort> algorithms;
 
     private final List<ArrayGenerator> arrayGenerator;
 
     @GetMapping("/props")
     public Map<String, Map<String,String>> getAllAlgorithmInfo(){
         Map<String, Map<String,String>> result = new HashMap<>();
-        algorythms.forEach(alg -> result.put(alg.getName(), alg.getProps()));
+        algorithms.forEach(alg -> result.put(alg.getName(), alg.getProps()));
         return result;
     }
 
     @GetMapping("/props/name")
     public List<String> getAllAlgorithmName(){
-        return algorythms.stream().map(BaseSort::getName).toList();
+        return algorithms.stream().map(BaseSort::getName).toList();
     }
 
 //    TODO: add error handling if not found algorythm then return 404
     @GetMapping("/props/{sortingAlgorithmClassName}")
     public BaseSort getAlgorithmInfo(@PathVariable String sortingAlgorithmClassName) {
-        return algorythms.stream()
+        return algorithms.stream()
                 .filter(algorythm -> algorythm.getName().equals(sortingAlgorithmClassName))
                 .findFirst()
                 .orElseThrow();
@@ -56,7 +56,7 @@ public class Controllers {
                                     .findFirst()
                                     .orElseThrow()
                                     .generateArray(size, maxValue);
-        return algorythms.stream()
+        return algorithms.stream()
                 .filter(algorithm -> algorithm.getName().equals(sortingAlgorithmClassName))
                 .findFirst()
                 .orElseThrow()
