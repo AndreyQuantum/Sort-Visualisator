@@ -55,8 +55,7 @@ public abstract class BaseSort{
         run();
         long finish = System.currentTimeMillis();
         long elapsed = finish - start;
-        props.put("time elapsed", String.valueOf(elapsed));
-        return new SortingResult(results, props.get("time elapsed"));
+        return new SortingResult(results, Long.toString(elapsed));
     }
 
     public String getName(){
