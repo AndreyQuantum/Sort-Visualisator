@@ -3,19 +3,19 @@ package com.azelentsov.sortVisualisator.Core.arrayGenerator;
 import com.azelentsov.sortVisualisator.Core.records.ArrayElement;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class ReverseSortedArray extends ArrayGenerator{
     @Override
     public List<ArrayElement> generateArray(int size, int maxValue) {
-        ArrayElement[] result = new ArrayElement[size];
-        for (int i = size-1; i >= 0; i--) {
-            result[i] = new ArrayElement(i,size - i);
+        List<ArrayElement> array = new ArrayList<>();
+        Random random = new Random(12345);
+        for (int i = 0; i < size; i++) {
+            array.add(new ArrayElement(i, random.nextInt(0, maxValue)));
         }
-        return new ArrayList<>(Arrays.asList(result));
+        array.sort(Comparator.comparingInt(ArrayElement::value).reversed());
+        return array;
     }
 
 }
