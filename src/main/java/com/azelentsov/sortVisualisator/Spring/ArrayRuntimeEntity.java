@@ -13,7 +13,13 @@ import java.util.UUID;
 @Builder
 @Entity
 @ToString
-public class ArrayRuntimeEntity {
+public class ArrayRuntimeEntity implements Comparable<ArrayRuntimeEntity> {
+    @Override
+    public int compareTo(ArrayRuntimeEntity o) {
+        return sortAlgorithmName.compareTo(o.sortAlgorithmName) +
+                arrayType.compareTo(o.arrayType);
+    }
+
     @Id
     @GeneratedValue
     @JdbcTypeCode(SqlTypes.UUID)

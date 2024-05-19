@@ -6,7 +6,6 @@ import com.azelentsov.sortVisualisator.Core.records.ArrayRuntime;
 import com.azelentsov.sortVisualisator.Core.records.SortingResultWithStats;
 import com.azelentsov.sortVisualisator.Core.sortAlgorithms.BaseSort;
 import com.azelentsov.sortVisualisator.Core.arrayGenerator.ArrayGenerator;
-import com.azelentsov.sortVisualisator.Core.records.ArrayElement;
 import com.azelentsov.sortVisualisator.Core.records.SortingResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -71,7 +70,7 @@ public class Controllers {
 //
     @GetMapping("/props/runtime")
     public List<ArrayRuntimeEntity> getAllRuntimeStats(){
-        return arrayRuntimeRepository.findAll();
+        return arrayRuntimeRepository.findAll().stream().sorted().toList();
     }
 
     @GetMapping("/props/runtime/{sortingAlgorithmClassName}")
