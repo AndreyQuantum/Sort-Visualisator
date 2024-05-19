@@ -83,4 +83,9 @@ public class Controllers {
     public List<ArrayRuntimeEntity> getAllRuntimeStats(@PathVariable String sortingAlgorithmClassName){
         return arrayRuntimeRepository.findBySortAlgorithmName(sortingAlgorithmClassName);
     }
+
+    @DeleteMapping("/props/runtime")
+    public void deleteAllRuntimeStats() {
+        arrayRuntimeRepository.deleteAll();
+    }
 }
