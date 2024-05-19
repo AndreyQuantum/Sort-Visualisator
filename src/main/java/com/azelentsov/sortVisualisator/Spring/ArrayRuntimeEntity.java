@@ -17,7 +17,8 @@ public class ArrayRuntimeEntity implements Comparable<ArrayRuntimeEntity> {
     @Override
     public int compareTo(ArrayRuntimeEntity o) {
         return sortAlgorithmName.compareTo(o.sortAlgorithmName) +
-                arrayType.compareTo(o.arrayType);
+                arrayType.compareTo(o.arrayType) +
+                Long.compare(elapsedTimeMs, o.elapsedTimeMs);
     }
 
     @Id
