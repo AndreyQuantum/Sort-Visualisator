@@ -88,4 +88,9 @@ public class Controllers {
     public void deleteAllRuntimeStats() {
         arrayRuntimeRepository.deleteAll();
     }
+
+    @RequestMapping("/{path:[^\\.]*}")
+    public String redirect() {
+        return "forward:/index.html";
+    }
 }
