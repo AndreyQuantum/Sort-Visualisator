@@ -11,5 +11,9 @@ import java.util.List;
 public interface ArrayRuntimeRepository extends JpaRepository<ArrayRuntimeEntity, Integer> {
     List<ArrayRuntimeEntity> findBySortAlgorithmName(@NonNull String sortAlgorithmName);
 
+    ArrayRuntimeEntity findBySortAlgorithmNameAndArrayTypeAndArraySizeAndMaxValue(@NonNull String sortAlgorithmName, @NonNull String arrayType, @NonNull int arraySize, @NonNull int maxValue);
+
+    boolean existsBySortAlgorithmNameAndArrayTypeAndArraySizeAndMaxValue(@NonNull String sortAlgorithmName, @NonNull String arrayType, @NonNull int arraySize, @NonNull int maxValue);
+
 
 }

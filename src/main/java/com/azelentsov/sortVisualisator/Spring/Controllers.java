@@ -20,7 +20,7 @@ public class Controllers {
 
     private final List<ArrayGenerator> arrayGenerator;
     private final ArrayRuntimeRepository arrayRuntimeRepository;
-    private ArrayRuntimeRepository arrayRuntimeEntityRepository;
+    private final ArrayRuntimeRepository arrayRuntimeEntityRepository;
 
     @GetMapping("/props")
     public Map<String, Map<String,String>> getAllAlgorithmInfo(){
@@ -63,14 +63,17 @@ public class Controllers {
                 .findFirst()
                 .orElseThrow();
         SortingResult result = algorithmToUse.getResult(array);
-        ArrayRuntimeEntity runtimeEntity = ArrayRuntimeEntity.builder()
-                .arraySize(size)
-                .arrayType(type)
-                .sortAlgorithmName(algorithmToUse.getName())
-                .maxValue(maxValue)
-                .elapsedTimeMs(result.timeElapsed())
-                .build();
-        arrayRuntimeRepository.save(runtimeEntity);
+        if (!arrayRuntimeEntityRepository
+                .existsBySortAlgorithmNameAndArrayTypeAndArraySizeAndMaxValue(algorithmToUse.getName(),type, size,maxValue)){
+            ArrayRuntimeEntity runtimeEntity = ArrayRuntimeEntity.builder()
+                    .arraySize(size)
+                    .arrayType(type)
+                    .sortAlgorithmName(algorithmToUse.getName())
+                    .maxValue(maxValue)
+                    .elapsedTimeMs(result.timeElapsed())
+                    .build();
+            arrayRuntimeRepository.save(runtimeEntity);
+        }
         return result;
     }
 //
