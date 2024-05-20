@@ -2,6 +2,9 @@ package com.azelentsov.sortVisualisator.Core.sortAlgorithms;
 
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Component
 public class QuickSort extends BaseSort{
     @Override
@@ -28,15 +31,22 @@ public class QuickSort extends BaseSort{
         части меньше опорного эл-та, тогда свапаем последний элемент меньшей части и увеличиваем
         границу меньшей части на 1
         */
-        int pivotIndex = r;
-        int lastLowerPartIndex = l-1;
-        for (int lastUnsortedIndex = l; lastUnsortedIndex <= r; lastUnsortedIndex++){
+        int pivot = r;
+        int low = l-1;
+        for (int unsort = l; unsort <= r; unsort++){
             saveArrayBeforeIteration();
-            if (listToSort.get(lastUnsortedIndex).value() <= listToSort.get(pivotIndex).value()){
-                swap(++lastLowerPartIndex, lastUnsortedIndex);
+            if (listToSort.get(unsort).value() <= listToSort.get(pivot).value()){
+                swap(++low, unsort);
             }
-            saveArrayAfterIteration(new int[]{lastLowerPartIndex,l, lastUnsortedIndex, pivotIndex});
+            HashMap<Integer, String> vars = new HashMap<>();
+            Map<Integer,String> res = new HashMap<>();
+            res.put(low, "low");
+            res.put(l,"l");
+            res.put(unsort, "unsort");
+            res.put(pivot, "pivot");
+            res.put(r,"r" );
+            saveArrayAfterIteration(res);
         }
-        return lastLowerPartIndex;
+        return low;
     }
 }

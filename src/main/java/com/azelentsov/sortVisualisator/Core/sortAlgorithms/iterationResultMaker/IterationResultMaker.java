@@ -1,11 +1,10 @@
 package com.azelentsov.sortVisualisator.Core.sortAlgorithms.iterationResultMaker;
 
-import com.azelentsov.sortVisualisator.Core.records.ArrayElement;
-import com.azelentsov.sortVisualisator.Core.records.IterationAction;
-import com.azelentsov.sortVisualisator.Core.records.IterationActionResult;
-import com.azelentsov.sortVisualisator.Core.records.IterationResult;
+import com.azelentsov.sortVisualisator.Core.records.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class IterationResultMaker {
 
@@ -42,7 +41,7 @@ public class IterationResultMaker {
 
 
 
-    public IterationResult getResult(int[] indexesToFocusOn){
+    public IterationResult getResult(Map<Integer, String> indexesToFocusOn){
         return new IterationResult(
                 indexesToFocusOn,
                 arrayElementsToIntArray(listBefore),

@@ -1,10 +1,10 @@
 package com.azelentsov.sortVisualisator.Core.sortAlgorithms;
 
 
-import com.azelentsov.sortVisualisator.Core.records.ArrayElement;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class BubbleSortOptimised extends BaseSort {
@@ -15,15 +15,20 @@ public class BubbleSortOptimised extends BaseSort {
     }
 
     private void optimized(){
-        for (int endPointer = listToSort.size(); endPointer>1; endPointer--){
+        for (int b = listToSort.size(); b>1; b--){
             boolean isNotSwapped = true;
-            for (int currentIndex=1; currentIndex< endPointer; currentIndex++){
+            for (int i=1; i< b; i++){
                 saveArrayBeforeIteration();
-                if (listToSort.get(currentIndex-1).value() > listToSort.get(currentIndex).value()){
-                    swap(currentIndex-1, currentIndex);
+                int prev = i-1;
+                if (listToSort.get(prev).value() > listToSort.get(i).value()){
+                    swap(prev, i);
                     isNotSwapped = false;
                 }
-                saveArrayAfterIteration(new int[]{currentIndex-1, currentIndex });
+                Map<Integer,String> res = new HashMap<>();
+                res.put(prev,"prev");
+                res.put(i, "i");
+                res.put(b, "b");
+                saveArrayAfterIteration(res);
             }
             if (isNotSwapped){
                 break;

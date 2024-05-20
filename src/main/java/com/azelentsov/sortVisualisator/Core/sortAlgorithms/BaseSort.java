@@ -33,7 +33,7 @@ public abstract class BaseSort{
         return copy;
     }
 
-    protected void saveArrayAfterIteration(int[] indexesToFocusOn){
+    protected void saveArrayAfterIteration(Map<Integer, String> indexesToFocusOn){
         List<ArrayElement> listAfter = deepCopyArrayElements(listToSort);
         IterationResultMaker resultMaker = new IterationResultMaker(listBefore, listAfter);
         results.add(resultMaker.getResult(indexesToFocusOn));

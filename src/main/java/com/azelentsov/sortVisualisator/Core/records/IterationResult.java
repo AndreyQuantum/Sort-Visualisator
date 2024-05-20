@@ -1,7 +1,10 @@
 package com.azelentsov.sortVisualisator.Core.records;
 
 
-public record IterationResult(int[] indexesToFocusOn,
+import java.util.HashMap;
+import java.util.Map;
+
+public record IterationResult(Map<Integer,String> indexesToFocusOn,
                               int[] arrayBeforeIteration,
                               int[] arrayAfterIteration,
                               IterationActionResult actionResult) {
