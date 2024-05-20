@@ -24,11 +24,10 @@ public class BubbleSortOptimised extends BaseSort {
                     swap(prev, i);
                     isNotSwapped = false;
                 }
-                Map<Integer,String> res = new HashMap<>();
-                res.put(prev,"prev");
-                res.put(i, "i");
-                res.put(b, "b");
-                saveArrayAfterIteration(res);
+                highlightValue(prev,"prev");
+                highlightValue(i, "i");
+                highlightValue(b, "b");
+                saveArrayAfterIteration();
             }
             if (isNotSwapped){
                 break;

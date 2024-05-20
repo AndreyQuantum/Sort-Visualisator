@@ -38,14 +38,12 @@ public class QuickSort extends BaseSort{
             if (listToSort.get(unsort).value() <= listToSort.get(pivot).value()){
                 swap(++low, unsort);
             }
-            HashMap<Integer, String> vars = new HashMap<>();
-            Map<Integer,String> res = new HashMap<>();
-            res.put(low, "low");
-            res.put(l,"l");
-            res.put(unsort, "unsort");
-            res.put(pivot, "pivot");
-            res.put(r,"r" );
-            saveArrayAfterIteration(res);
+            highlightValue(low, "low");
+            highlightValue(l,"l");
+            highlightValue(unsort, "unsort");
+            highlightValue(pivot, "pivot");
+            highlightValue(r,"r" );
+            saveArrayAfterIteration();
         }
         return low;
     }

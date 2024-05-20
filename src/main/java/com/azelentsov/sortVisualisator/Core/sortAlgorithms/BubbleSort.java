@@ -22,11 +22,10 @@ public class BubbleSort extends BaseSort {
                 if (listToSort.get(prev).value() > listToSort.get(i).value()){
                     swap(prev, i);
                 }
-                Map<Integer,String> res = new HashMap<>();
-                res.put(prev,"prev");
-                res.put(i, "i");
-                res.put(b, "b");
-                saveArrayAfterIteration(res);
+                highlightValue(prev,"prev");
+                highlightValue(i, "i");
+                highlightValue(b, "b");
+                saveArrayAfterIteration();
             }
         }
     }
