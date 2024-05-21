@@ -32,11 +32,13 @@ public class ShellSort extends BaseSort {
             for (int j = gap; j < listToSort.size(); j++){
                 for (int i = j; i>=gap && listToSort.get(i-gap).value() > listToSort.get(i).value(); i-=gap){
                     saveArrayBeforeIteration();
-                    swap(i-gap, i);
-                    saveArrayAfterIteration();
+
                     highlightVariable(i-gap, "i-gap");
                     highlightVariable(i, "i");
                     displayVariable(gap, "gap");
+
+                    swap(i-gap, i);
+                    saveArrayAfterIteration();
                 }
             }
         }
