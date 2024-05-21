@@ -27,12 +27,9 @@ public class BubbleSort extends BaseSort {
         props.put("Stable", "Yes");
         props.put("In-Place", "Yes");
         props.put("Adaptive", "Yes");
-        props.put("Comparison Sort", "Yes");
-        props.put("Exchange Sort", "Yes");
         props.put("First Published", "1956");
         props.put("Suitable For", "Small datasets or nearly sorted datasets");
         props.put("Not Suitable For", "Large datasets");
-
     }
 
     private void standart(){

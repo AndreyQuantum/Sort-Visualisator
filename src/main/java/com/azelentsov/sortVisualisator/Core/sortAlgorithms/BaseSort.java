@@ -1,7 +1,6 @@
 package com.azelentsov.sortVisualisator.Core.sortAlgorithms;
 
 import com.azelentsov.sortVisualisator.Core.sortAlgorithms.iterationResultMaker.IterationResultMaker;
-import com.azelentsov.sortVisualisator.Core.properties.PropsUtils;
 import com.azelentsov.sortVisualisator.Core.records.*;
 
 import java.util.*;
@@ -10,7 +9,7 @@ public abstract class BaseSort{
 
     private final String name = this.getClass().getSimpleName();
 
-    protected Map<String, String> props =  new HashMap<>();
+    protected Map<String, String> props =  new HashMap<>(Map.of("name", this.getClass().getSimpleName()));
 
     private List<IterationResult> results = new LinkedList<>();
 
@@ -57,6 +56,7 @@ public abstract class BaseSort{
     }
 
     public Map<String,String> getProps(){
+        populateProps();
         return props;
     }
 

@@ -24,7 +24,6 @@ public class QuickSort extends BaseSort{
         props.put("In-Place", "Yes");
         props.put("Adaptive", "No");
         props.put("Comparison Sort", "Yes");
-        props.put("Basic Idea", "Partition the array into two sub-arrays around a pivot element, then recursively sort the sub-arrays");
         props.put("First Published", "1961");
         props.put("Suitable For", "Large datasets, average-case efficient");
         props.put("Not Suitable For", "Datasets that are mostly sorted, worst-case is inefficient");
