@@ -29,7 +29,10 @@ public class ShellSort extends BaseSort {
     protected void run() {
         for (int gap = gapCalculate(listToSort.size()); gap>0; gap = gapCalculate(gap)){
             displayVariable(gap, "gap");
+            saveArrayBeforeIteration();
+            boolean isCompletedAction = false;
             for (int j = gap; j < listToSort.size(); j++){
+                displayVariable(listToSort.get(j-gap).value() > listToSort.get(j).value() ? 1: 0, "if j-gap > j");
                 for (int i = j; i>=gap && listToSort.get(i-gap).value() > listToSort.get(i).value(); i-=gap){
                     saveArrayBeforeIteration();
 
@@ -39,8 +42,16 @@ public class ShellSort extends BaseSort {
 
                     swap(i-gap, i);
                     saveArrayAfterIteration();
+                    isCompletedAction = true;
                 }
             }
+            saveArrayIfSwappingWasNotDone(isCompletedAction);
+        }
+    }
+
+    private void saveArrayIfSwappingWasNotDone(boolean isCompletedAction) {
+        if (!isCompletedAction){
+            saveArrayAfterIteration();
         }
     }
 

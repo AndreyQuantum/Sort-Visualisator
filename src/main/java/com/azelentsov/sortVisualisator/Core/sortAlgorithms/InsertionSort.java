@@ -6,6 +6,9 @@ import org.springframework.stereotype.Component;
 public class InsertionSort extends BaseSort {
     private void swapping(){
         for (int currentIndex = 1; currentIndex < listToSort.size(); currentIndex++) {
+            saveArrayBeforeIteration();
+            highlightVariable(currentIndex, "current");
+            boolean hasLoop = false;
             for (int pointer = currentIndex - 1;
                  pointer >= 0 && listToSort.get(pointer).value() > listToSort.get(pointer + 1).value(); pointer--) {
                 saveArrayBeforeIteration();
@@ -14,7 +17,15 @@ public class InsertionSort extends BaseSort {
                 highlightVariable(pointer+1, "point+1");
                 swap(pointer + 1, pointer);
                 saveArrayAfterIteration();
+                hasLoop = true;
             }
+            saveArrayIfForWasNotCompleted(hasLoop);
+        }
+    }
+
+    private void saveArrayIfForWasNotCompleted(boolean hasLoop) {
+        if (!hasLoop){
+            saveArrayAfterIteration();
         }
     }
 
