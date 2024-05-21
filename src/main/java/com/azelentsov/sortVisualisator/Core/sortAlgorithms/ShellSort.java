@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 public class ShellSort extends BaseSort {
     
     private int gapCalculate(int currentGap){
-        return calculateStandartGap(currentGap);
+        return calculateHibbardsGap(currentGap);
     }
 
     private int calculateHibbardsGap(int currentGap){

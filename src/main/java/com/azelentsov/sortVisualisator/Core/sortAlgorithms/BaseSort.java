@@ -43,6 +43,7 @@ public abstract class BaseSort{
         IterationResultMaker resultMaker = new IterationResultMaker(listBefore, listAfter);
         results.add(resultMaker.getResult(indexesToFocusOn, indexesToDisplay));
         indexesToFocusOn = new HashMap<>();
+        indexesToDisplay = new HashMap<>();
     }
 
     protected void highlightVariable(int index, String variableName){
