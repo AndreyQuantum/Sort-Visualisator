@@ -41,9 +41,10 @@ public class IterationResultMaker {
 
 
 
-    public IterationResult getResult(Map<Integer, List<String>> indexesToFocusOn){
+    public IterationResult getResult(Map<Integer, List<String>> indexesToFocusOn, Map<String,Integer> indexesToDisplay){
         return new IterationResult(
                 indexesToFocusOn,
+                indexesToDisplay,
                 arrayElementsToIntArray(listBefore),
                 arrayElementsToIntArray(listAfter),
                 detectIterationAction());

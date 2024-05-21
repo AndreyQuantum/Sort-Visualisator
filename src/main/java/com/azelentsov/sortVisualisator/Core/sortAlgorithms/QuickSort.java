@@ -2,9 +2,6 @@ package com.azelentsov.sortVisualisator.Core.sortAlgorithms;
 
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Component
 public class QuickSort extends BaseSort{
     @Override
@@ -23,7 +20,6 @@ public class QuickSort extends BaseSort{
         props.put("Stable", "No");
         props.put("In-Place", "Yes");
         props.put("Adaptive", "No");
-        props.put("Comparison Sort", "Yes");
         props.put("First Published", "1961");
         props.put("Suitable For", "Large datasets, average-case efficient");
         props.put("Not Suitable For", "Datasets that are mostly sorted, worst-case is inefficient");
@@ -55,11 +51,11 @@ public class QuickSort extends BaseSort{
             if (listToSort.get(unsort).value() <= listToSort.get(pivot).value()){
                 swap(++low, unsort);
             }
-            highlightValue(low, "low");
-            highlightValue(l,"l");
-            highlightValue(unsort, "unsort");
-            highlightValue(pivot, "pivot");
-            highlightValue(r,"r" );
+            highlightVariable(low, "low");
+            highlightVariable(l,"l");
+            highlightVariable(unsort, "unsort");
+            highlightVariable(pivot, "pivot");
+            highlightVariable(r,"r" );
             saveArrayAfterIteration();
         }
         return low;

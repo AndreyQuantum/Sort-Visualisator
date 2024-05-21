@@ -19,6 +19,8 @@ public abstract class BaseSort{
 
     private Map<Integer, List<String>> indexesToFocusOn = new HashMap<>();
 
+    private Map<String, Integer> indexesToDisplay = new HashMap<>();
+
 
     protected abstract void run();
 
@@ -39,16 +41,20 @@ public abstract class BaseSort{
     protected void saveArrayAfterIteration(){
         List<ArrayElement> listAfter = deepCopyArrayElements(listToSort);
         IterationResultMaker resultMaker = new IterationResultMaker(listBefore, listAfter);
-        results.add(resultMaker.getResult(indexesToFocusOn));
+        results.add(resultMaker.getResult(indexesToFocusOn, indexesToDisplay));
         indexesToFocusOn = new HashMap<>();
     }
 
-    protected void highlightValue(int index,String variableName){
+    protected void highlightVariable(int index, String variableName){
         if (indexesToFocusOn.containsKey(index)){
             indexesToFocusOn.get(index).add(variableName);
         } else {
             indexesToFocusOn.put(index, new ArrayList<>(List.of(variableName)));
         }
+    }
+
+    protected void displayVariable(int value,String variableName){
+        indexesToDisplay.put(variableName,value);
     }
 
     protected void swap(int indexA, int indexB){

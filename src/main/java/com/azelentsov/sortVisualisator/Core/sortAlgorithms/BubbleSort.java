@@ -3,9 +3,6 @@ package com.azelentsov.sortVisualisator.Core.sortAlgorithms;
 
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Component
 public class BubbleSort extends BaseSort {
 
@@ -40,9 +37,9 @@ public class BubbleSort extends BaseSort {
                 if (listToSort.get(prev).value() > listToSort.get(i).value()){
                     swap(prev, i);
                 }
-                highlightValue(prev,"prev");
-                highlightValue(i, "i");
-                highlightValue(b, "b");
+                highlightVariable(prev,"prev");
+                highlightVariable(i, "i");
+                highlightVariable(b, "b");
                 saveArrayAfterIteration();
             }
         }
