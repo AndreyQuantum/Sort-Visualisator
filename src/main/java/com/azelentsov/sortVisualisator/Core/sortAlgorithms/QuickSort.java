@@ -12,6 +12,24 @@ public class QuickSort extends BaseSort{
         quickSort(0, listToSort.size() - 1);
     }
 
+    @Override
+    protected void populateProps() {
+        props.put("Time Complexity (Average)", "O(n log n)");
+        props.put("Time Complexity (Best)", "O(n log n)");
+        props.put("Time Complexity (Worst)", "O(n^2)");
+        props.put("Space Complexity", "O(log n)");
+        props.put("Swaps", "Varies (dependent on pivot)");
+        props.put("Passes", "O(log n) recursive calls");
+        props.put("Stable", "No");
+        props.put("In-Place", "Yes");
+        props.put("Adaptive", "No");
+        props.put("Comparison Sort", "Yes");
+        props.put("Basic Idea", "Partition the array into two sub-arrays around a pivot element, then recursively sort the sub-arrays");
+        props.put("First Published", "1961");
+        props.put("Suitable For", "Large datasets, average-case efficient");
+        props.put("Not Suitable For", "Datasets that are mostly sorted, worst-case is inefficient");
+    }
+
     private void quickSort(int l, int r) {
 //        условие выхода из рекурсии - чтобы левая граница не зашла на правую
         if (l >= r) return;

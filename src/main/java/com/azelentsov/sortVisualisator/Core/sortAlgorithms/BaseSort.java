@@ -10,7 +10,7 @@ public abstract class BaseSort{
 
     private final String name = this.getClass().getSimpleName();
 
-    private Map<String, String> props =  new PropsUtils().readProperties(name);
+    protected Map<String, String> props =  new HashMap<>();
 
     private List<IterationResult> results = new LinkedList<>();
 
@@ -22,6 +22,8 @@ public abstract class BaseSort{
 
 
     protected abstract void run();
+
+    protected abstract void populateProps();
 
     protected void saveArrayBeforeIteration(){
         listBefore = deepCopyArrayElements(listToSort);
