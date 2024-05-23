@@ -6,13 +6,12 @@ plugins {
 }
 
 group = 'com.azelentsov'
-version = '0.0.1-SNAPSHOT'
+version = '2024-05-21-01'
+
+
 jar {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    manifest {
-        attributes "Main-Class": "com.gradle.tutorial.FizzBuzzProcessor"
-    }
-
+    duplicatesStrategy = 'INCLUDE'
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }

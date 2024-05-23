@@ -43,6 +43,7 @@ protected void run() {
             saveArrayBeforeIteration();
             highlightVariable(i,"i");
             highlightVariable(i+1,"i+1");
+            highlightBorders(left, mid, right);
             temp.add(listToSort.get(i++));
 
             saveArrayAfterIteration();
@@ -52,6 +53,7 @@ protected void run() {
             saveArrayBeforeIteration();
             highlightVariable(j,"j");
             highlightVariable(j+1,"j++");
+            highlightBorders(left, mid, right);
             temp.add(listToSort.get(j++));
 
             saveArrayAfterIteration();
@@ -60,11 +62,19 @@ protected void run() {
         for (i = left; i <= right; i++) {
             saveArrayBeforeIteration();
             highlightVariable(i,"i");
+            highlightVariable(left,"left");
             highlightVariable(i-left,"i-left");
+            highlightBorders(left, mid, right);
             listToSort.set(i, temp.get(i - left));
 
             saveArrayAfterIteration();
         }
+    }
+
+    private void highlightBorders(int left, int mid, int right) {
+        highlightVariable(right,"right");
+        highlightVariable(mid,"mid");
+        highlightVariable(left,"left");
     }
 
 
