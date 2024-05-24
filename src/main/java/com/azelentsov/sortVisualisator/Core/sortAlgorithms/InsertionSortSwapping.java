@@ -3,7 +3,7 @@ package com.azelentsov.sortVisualisator.Core.sortAlgorithms;
 import org.springframework.stereotype.Component;
 
 @Component
-public class InsertionSort extends BaseSort {
+public class InsertionSortSwapping extends BaseSort {
     private void swapping(){
         for (int currentIndex = 1; currentIndex < listToSort.size(); currentIndex++) {
             saveArrayBeforeIteration();
@@ -29,16 +29,7 @@ public class InsertionSort extends BaseSort {
         }
     }
 
-    private void shifting(){
-        int pointer;
-        for (int currentIndex = 0; currentIndex < listToSort.size(); currentIndex++){
-            int currentElement = listToSort.get(currentIndex).value();
-            for (pointer = currentIndex-1; pointer >=0 && listToSort.get(pointer).value() > currentElement; pointer--){
-                swap(pointer + 1, pointer);
-            }
-            swap(pointer + 1, currentIndex);
-        }
-    }
+
 
     private void shiftingBinarySearch(){
         int pointer;
