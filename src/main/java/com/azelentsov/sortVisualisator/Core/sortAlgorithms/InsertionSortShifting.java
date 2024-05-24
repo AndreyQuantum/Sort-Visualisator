@@ -7,23 +7,6 @@ import org.springframework.stereotype.Component;
 public class InsertionSortShifting extends BaseSort {
 
     @Override
-    protected void populateProps() {
-        props.put("Time Complexity (Average)", "O(n^2)");
-        props.put("Time Complexity (Best)", "O(n)");
-        props.put("Time Complexity (Worst)", "O(n^2)");
-        props.put("Space Complexity", "O(1)");
-        props.put("Stable", "Yes");
-        props.put("In-Place", "Yes");
-        props.put("Adaptive", "Yes");
-        props.put("First Published", "1946");
-        props.put("Suitable For", "Small datasets or nearly sorted datasets");
-        props.put("Not Suitable For", "Large datasets");
-        props.put("Swaps", "O(n^2)");
-        props.put("Passes", "O(n)");
-
-    }
-
-    @Override
     protected void run() {
             int i, j;
             ArrayElement newValue;
@@ -43,5 +26,22 @@ public class InsertionSortShifting extends BaseSort {
                 }
                 listToSort.set(j, newValue);
             }
+    }
+
+    @Override
+    protected void populateProps() {
+        props.put("Time Complexity (Average)", "O(n^2)");
+        props.put("Time Complexity (Best)", "O(n)");
+        props.put("Time Complexity (Worst)", "O(n^2)");
+        props.put("Space Complexity", "O(1)");
+        props.put("Stable", "Yes");
+        props.put("In-Place", "Yes");
+        props.put("Adaptive", "Yes");
+        props.put("First Published", "1946");
+        props.put("Suitable For", "Small datasets or nearly sorted datasets");
+        props.put("Not Suitable For", "Large datasets");
+        props.put("Swaps", "O(n^2)");
+        props.put("Passes", "O(n)");
+
     }
 }
