@@ -30,35 +30,6 @@ public class InsertionSortSwapping extends BaseSort {
     }
 
 
-
-    private void shiftingBinarySearch(){
-        int pointer;
-        for (int currentIndex = 0; currentIndex < listToSort.size(); currentIndex++){
-            int currentElement = listToSort.get(currentIndex).value();
-            int whereToPast = binarySearch(currentElement, 0, currentIndex-1);
-            for (pointer = currentIndex-1; pointer >= whereToPast; pointer--){
-                swap(pointer + 1, pointer);
-            }
-            swap(pointer + 1, currentIndex);
-        }
-    }
-
-    private int binarySearch(int numberToCompare, int startPosition, int endPosition){
-        if (endPosition<= startPosition){
-            if (numberToCompare <= listToSort.get(startPosition).value()){
-                return startPosition +1;
-            } else {
-                return startPosition;
-            }
-        }
-        int mid = (startPosition + endPosition)/2;
-        if (numberToCompare > listToSort.get(mid).value()){
-            return binarySearch(numberToCompare, mid+1, endPosition);
-        } else {
-            return binarySearch(numberToCompare, startPosition, mid -1);
-        }
-    }
-
     @Override
     protected void run() {
         swapping();
