@@ -6,11 +6,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class BubbleSort extends BaseSort {
 
-
-
     @Override
     protected void run() {
-        standart();
+        for (int b = listToSort.size(); b>1; b--) {
+            for (int i = 1; i < b; i++) {
+                saveArrayBeforeIteration();
+                int prev = i - 1;
+                if (listToSort.get(prev).value() > listToSort.get(i).value()) {
+                    swap(prev, i);
+                }
+                highlightVariable(prev, "prev");
+                highlightVariable(i, "i");
+                highlightVariable(b, "b");
+                saveArrayAfterIteration();
+            }
+        }
     }
 
     @Override
@@ -27,21 +37,5 @@ public class BubbleSort extends BaseSort {
         props.put("First Published", "1956");
         props.put("Suitable For", "Small datasets or nearly sorted datasets");
         props.put("Not Suitable For", "Large datasets");
-    }
-
-    private void standart(){
-        for (int b = listToSort.size(); b>1; b--){
-            for (int i=1; i < b; i++){
-                saveArrayBeforeIteration();
-                int prev = i-1;
-                if (listToSort.get(prev).value() > listToSort.get(i).value()){
-                    swap(prev, i);
-                }
-                highlightVariable(prev,"prev");
-                highlightVariable(i, "i");
-                highlightVariable(b, "b");
-                saveArrayAfterIteration();
-            }
-        }
     }
 }
