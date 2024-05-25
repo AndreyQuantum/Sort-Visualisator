@@ -7,8 +7,6 @@ import java.util.*;
 
 public abstract class BaseSort{
 
-    private final String name = this.getClass().getSimpleName();
-
     protected Map<String, String> props =  new HashMap<>(Map.of("name", this.getClass().getSimpleName()));
 
     private List<IterationResult> results = new LinkedList<>();
