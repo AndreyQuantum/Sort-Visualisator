@@ -21,8 +21,6 @@ public class QuickSort extends BaseSort{
         props.put("In-Place", "Yes");
         props.put("Adaptive", "No");
         props.put("First Published", "1961");
-        props.put("Suitable For", "Large datasets, average-case efficient");
-        props.put("Not Suitable For", "Datasets that are mostly sorted, worst-case is inefficient");
     }
 
     private void quickSort(int l, int r) {

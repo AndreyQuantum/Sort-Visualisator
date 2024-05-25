@@ -54,8 +54,6 @@ public class HeapSort extends BaseSort{
         props.put("In-Place", "Yes");
         props.put("Adaptive", "No");
         props.put("First Published", "1964");
-        props.put("Suitable For", "Large datasets, when in-place sorting is required");
-        props.put("Not Suitable For", "Datasets where stability is important");
         props.put("Swaps", "O(n log n)");
         props.put("Passes", "O(log n)");
     }

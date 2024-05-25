@@ -65,8 +65,6 @@ public class ShellSort extends BaseSort {
         props.put("In-Place", "Yes");
         props.put("Adaptive", "Yes");
         props.put("First Published", "1959");
-        props.put("Suitable For", "Medium-sized datasets, adaptive to certain gap sequences");
-        props.put("Not Suitable For", "Very large datasets");
         props.put("Swaps", "Varies (dependent on gap sequence)");
         props.put("Passes", "Logarithmic number of passes depending on the gap sequence");
     }

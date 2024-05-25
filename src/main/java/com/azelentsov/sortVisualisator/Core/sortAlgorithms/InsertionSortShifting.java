@@ -38,8 +38,6 @@ public class InsertionSortShifting extends BaseSort {
         props.put("In-Place", "Yes");
         props.put("Adaptive", "Yes");
         props.put("First Published", "1946");
-        props.put("Suitable For", "Small datasets or nearly sorted datasets");
-        props.put("Not Suitable For", "Large datasets");
         props.put("Swaps", "O(n^2)");
         props.put("Passes", "O(n)");
 

@@ -88,8 +88,6 @@ protected void run() {
         props.put("In-Place", "No");
         props.put("Adaptive", "No");
         props.put("First Published", "1945");
-        props.put("Suitable For", "Large datasets, external sorting (when data doesn't fit in memory)");
-        props.put("Not Suitable For", "Small datasets due to overhead of recursive calls and merging");
         props.put("Swaps", "N/A (merges rather than swaps)");
         props.put("Passes", "O(log n)");
     }

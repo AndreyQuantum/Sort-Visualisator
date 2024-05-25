@@ -42,8 +42,6 @@ public class SelectionSort extends BaseSort {
         props.put("In-Place", "Yes");
         props.put("Adaptive", "No");
         props.put("First Published", "1956");
-        props.put("Suitable For", "Small datasets or when memory writes are costly");
-        props.put("Not Suitable For", "Large datasets due to its quadratic time complexity");
         props.put("Swaps", "O(n)");
         props.put("Passes", "O(n)");
 
